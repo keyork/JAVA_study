@@ -1,8 +1,12 @@
 /*
 * 记录学习JAVA基本语法的练手的代码
 */
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
+
 import java.util.*;
 import java.text.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BaseGrammar {
     public static void main(String []args) {
@@ -42,6 +46,9 @@ public class BaseGrammar {
 
         DateDemo date_demo = new DateDemo();
         date_demo.get_date();
+
+        RegexMatches regex = new RegexMatches();
+        regex.match();
     }
 }
 
@@ -217,3 +224,38 @@ class DateDemo {
         System.out.println("Current Date: " + ft.format(date));
     }
 }
+
+/*
+* 正则表达式
+*/
+
+class RegexMatches {
+    public void match() {
+        String line = "This order was placed for QT3000! OK?";
+        String pattern = "(.*)(\\d+)(.*)";
+
+        Pattern r = Pattern.compile(pattern);
+
+        Matcher m = r.matcher(line);
+        if (m.find()) {
+            System.out.println("Found value: " + m.group(0));
+            System.out.println("Found value: " + m.group(1));
+            System.out.println("Found value: " + m.group(2));
+        } else {
+            System.out.println("No Match!!!");
+        }
+    }
+}
+
+/*
+* JAVA的方法
+* 方法：语句的集合，在一起执行一个功能
+* void
+* 通过值传递参数
+* 方法的重载
+* 命令行参数的使用：把args当成一个字符串就行了
+* 构造方法
+* 不一样的：可变参数。方法的参数写成double... numbers，然后把numbers当成数组就行了
+* finalize()方法：对应C++里的析构函数
+*/
+
